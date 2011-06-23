@@ -34,6 +34,8 @@ def templatetag():
         '<a href="http://example.com"></a>'  # scheme + domain
         '<a href="ftp://example.com/abcd/"></a>'  # scheme + domain + path
         '<a href="ftp://example.com"></a>'  # scheme + domain
+        '<a href="ftp://example.com/"></a>'  # scheme + domain + path
+        '<a href=""></a>'  # scheme + domain + path
         '{% endprotocolify %}'
     )
     expected = (
@@ -45,6 +47,8 @@ def templatetag():
         '<a href="https://example.com"></a>'
         '<a href="https://example.com/abcd/"></a>'
         '<a href="https://example.com"></a>'
+        '<a href="https://example.com/"></a>'
+        '<a href="https://example.com/blah/"></a>'
     )
     Assert(expected) == Template(template).render(context)
 

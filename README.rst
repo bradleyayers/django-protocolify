@@ -28,18 +28,37 @@ Usage
 
     {% protocolify [old] to <new> %}
 
-Example:
+Example (assuming request was to ``http://example.com/blah/``)::
 
+    {% load protocolify %}
     {% protocolify to "https" %}
-    <a href="/examples/">Examples</a>
+    <a href="/abcd/"></a>
+    <a href="abcd/"></a>
+    <a href="./abcd/"></a>
+    <a href="../abcd/"></a>
+    <a href="http://example.com/abcd/"></a>
+    <a href="http://example.com"></a>
+    <a href="ftp://example.com/abcd/"></a>
+    <a href="ftp://example.com"></a>
+    <a href="ftp://example.com/"></a>
+    <a href=""></a>
     {% endprotocolify %}
 
 renders to::
 
-    <a href="https://example.com/examples/">Examples</a>
+    <a href="https://example.com/abcd/"></a>
+    <a href="https://example.com/blah/abcd/"></a>
+    <a href="https://example.com/blah/abcd/"></a>
+    <a href="https://example.com/abcd/"></a>
+    <a href="https://example.com/abcd/"></a>
+    <a href="https://example.com"></a>
+    <a href="https://example.com/abcd/"></a>
+    <a href="https://example.com"></a>
+    <a href="https://example.com/"></a>
+    <a href="https://example.com/blah/"></a>
 
 This is currently implemented using a couple of simplistic regular expressions
-and ``urlparse.urljoin()`` (*old* defaults to ``[a-zA-Z]+``)::
+and ``urlparse.urljoin()`` (Note: *old* defaults to ``[a-zA-Z]+``)::
 
     # e.g. href="http://google.com"
     re.sub(r' (src|href)="%s://' % old, r' \1="%s://' % new, ...)

@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-protocolify',
-    version='0.1.0.dev',
+    version='0.1.0',
     description='Template tag to change the protocol of URLs in links.',
     author='Bradley Ayers',
     author_email='bradley.ayers@gmail.com',
