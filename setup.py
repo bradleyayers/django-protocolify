@@ -4,13 +4,13 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-protocolify',
-    version='0.1.0',
+    version='0.1.1',
     description='Template tag to change the protocol of URLs in links.',
     author='Bradley Ayers',
     author_email='bradley.ayers@gmail.com',
     url='https://github.com/bradleyayers/django-protocolify/',
 
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests.*', 'tests']),
     include_package_data=True,  # declarations in MANIFEST.in
 
     install_requires=['Django >=1.2'],
